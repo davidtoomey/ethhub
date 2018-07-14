@@ -6,6 +6,7 @@ import Layout from '../../components/Layout';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 import { Router } from '../../routes';
+import axios from 'axios';
 
 class QuestionNew extends Component {
   state = {
@@ -25,6 +26,7 @@ class QuestionNew extends Component {
 
     try {
       const accounts = await web3.eth.getAccounts();
+      const defaultAccount = accounts[0];
       // don't need to specify gas amount, metaMask estimates that for us
       await factory.methods
         .createQuestion(this.state.qString)
@@ -32,11 +34,21 @@ class QuestionNew extends Component {
           from: accounts[0]
         });
 
+      // axios post request to create question
+      // in mongoDB
+      axios.post('/api/questions/new', {
+        asker: defaultAccount,
+        questionString: this.state.qString
+      })
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+      // end axios
+
+      // '/'
       Router.pushRoute('/');
     } catch (err) {
       this.setState({ errorMessage: err.message });
     }
-
     // stop the button spinner
     this.setState({ loading: false });
   };
