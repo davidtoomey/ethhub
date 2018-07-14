@@ -30,6 +30,12 @@ module.exports = {
     Question.findByIdAndRemove({ _id: questionId })
       .then(question => res.status(204).send(question))
       .catch(next);
+  },
+
+  getQuestions(req, res, next) {
+    Question.db.collection.find({})
+      .then(questions => res.send(questions))
+      .catch(next);
   }
 
 };
