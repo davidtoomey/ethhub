@@ -23,6 +23,7 @@ app.prepare().then(() => {
   server.post('/api/questions/new', QuestionsController.create);
   server.put('/api/questions/:id', QuestionsController.edit);
   server.delete('/api/questions/:id', QuestionsController.delete);
+  server.get('/api/questions/all', QuestionsController.getQuestions);
 
   server.get('*', (req, res) => {
     handle(req, res)
