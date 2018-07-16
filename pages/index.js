@@ -6,9 +6,6 @@ import QuestionData from '../components/QuestionData';
 import { Link } from '../routes';
 
 class QuestionIndex extends Component {
-  state: {
-    questData: []
-  };
   // static defines a class function
   // this is a nextjs requirement
   // next wants to retrieve the initial data, without rendering our component,
