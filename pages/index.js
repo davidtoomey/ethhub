@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
+import Question from '../ethereum/question';
 import { Card, Button } from 'semantic-ui-react';
 import Layout from '../components/Layout';
+import QuestionData from '../components/QuestionData';
 import { Link } from '../routes';
 
 class QuestionIndex extends Component {
+  state: {
+    questData: []
+  };
   // static defines a class function
   // this is a nextjs requirement
   // next wants to retrieve the initial data, without rendering our component,
@@ -16,19 +21,11 @@ class QuestionIndex extends Component {
   }
 
   renderQuestions() {
-    const items = this.props.questions.map(address => {
-      return {
-        header: address,
-        description: (
-          <Link route={`/questions/${address}`}>
-            <a>View Question</a>
-          </Link>
-        ),
-        fluid: true
-      };
+    const addresses = this.props.questions.map(address => {
+      return <QuestionData key={address.toString()} value={address} />;
     });
 
-    return <Card.Group items={items} />;
+    return addresses;
   }
 
   render() {
