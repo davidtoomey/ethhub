@@ -1,6 +1,9 @@
 import React from 'react';
 import Question from '../ethereum/question';
 import {asyncReactor} from 'async-reactor';
+import { Link } from '../routes';
+import { Card, Table } from 'semantic-ui-react';
+import web3 from '../ethereum/web3';
 
 function Error() {
   return (
@@ -23,12 +26,22 @@ async function questionData(props) {
   let loadedQuestion = Question(props.value);
   let summary = await loadedQuestion.methods.getSummary().call();
 
+  const { Row, Cell } = Table;
+
   return (
-    <ul>
-      <li>Contract Address: {addr}</li>
-      <li>Asker: {summary[3]}</li>
-      <li>Question: {summary[0]}</li>
-    </ul>
+    <Row>
+      <Cell>
+        Bounty: {web3.utils.fromWei(summary[1], 'ether') + ' ETH'}
+      </Cell>
+      <Cell>
+        {summary[2]} answers
+      </Cell>
+      <Cell>
+        <Link route={`/questions/${addr}`} prefetch>
+          <a>{summary[0]}</a>
+        </Link>
+      </Cell>
+    </Row>
   );
 };
 
