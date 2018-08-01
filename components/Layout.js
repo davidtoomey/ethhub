@@ -3,7 +3,7 @@ import { Container } from 'semantic-ui-react';
 // whatever you wrap in Head tags, gets put in the head tags of the html doc
 import Head from 'next/head';
 import Header from './Header';
-import Sidebar from '../components/Sidebar';
+import Sidebar from './Sidebar.js';
 
 const questionStyle = {
   marginLeft: '160px',
