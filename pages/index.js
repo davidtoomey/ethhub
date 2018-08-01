@@ -4,6 +4,7 @@ import { Card, Button } from 'semantic-ui-react';
 import Layout from '../components/Layout';
 import QuestionData from '../components/QuestionData';
 import { Link } from '../routes';
+import Header from '../components/Header';
 
 class QuestionIndex extends Component {
   // static defines a class function
@@ -18,7 +19,12 @@ class QuestionIndex extends Component {
 
   renderQuestions() {
     const addresses = this.props.questions.map(address => {
-      return <QuestionData key={address.toString()} value={address} />;
+      return (
+        <QuestionData
+          key={address.toString()}
+          value={address}
+        />
+      );
     });
 
     return addresses;
@@ -26,25 +32,24 @@ class QuestionIndex extends Component {
 
   render() {
     return (
-      <Layout>
-        <div>
-          <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
-          <h3>Open Questions</h3>
+        <Layout>
+          <div>
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
+            <h3>Open Questions</h3>
 
-          <Link route="/questions/new">
-            <a>
-              <Button
-                floated="right"
-                content="Create Question"
-                icon="add circle"
-                primary={true}
-              />
-            </a>
-          </Link>
-        </div>
-
-        {this.renderQuestions()}
-      </Layout>
+            <Link route="/questions/new">
+              <a>
+                <Button
+                  floated="right"
+                  content="Create Question"
+                  icon="add circle"
+                  primary={true}
+                />
+              </a>
+            </Link>
+          </div>
+            {this.renderQuestions()}
+        </Layout>
     );
   }
 }

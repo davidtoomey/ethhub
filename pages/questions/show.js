@@ -9,7 +9,7 @@ import web3 from '../../ethereum/web3';
 import { Link } from '../../routes';
 
 class QuestionShow extends Component {
-  state ={
+  state = {
     isAsker: false
   };
 
@@ -92,31 +92,38 @@ class QuestionShow extends Component {
   render() {
     return (
       <Layout>
-        <h3>Question</h3>
-        <Grid>
-          <Grid.Row>
-            { this.state.isAsker &&
-              <div style={{ marginBottom: '15px' }}>
-                <h5 style={{ display: 'inline-block', marginBottom: '15px'  }}>
-                  <div style={{ color: '#32CD32' }}>You are the asker of this question.</div> You can <div style={{ color: 'red', display: 'inline-block' }}>set the bounty in the form below</div>, then approve the correct answer to pay out the bounty.
-                </h5>
-              </div>
-            }
-            <Grid.Column width={16}>
-              {this.renderCards()}
-              <br />
-            </Grid.Column>
-          </Grid.Row>
+        <div style={showStyle}>
+          <h3>Question</h3>
+          <Grid>
+            <Grid.Row>
+              { this.state.isAsker &&
+                <div style={{ marginBottom: '15px' }}>
+                  <h5 style={{ display: 'inline-block', marginBottom: '15px'  }}>
+                    <div style={{ color: '#32CD32' }}>You are the asker of this question.</div> You can <div style={{ color: 'red', display: 'inline-block' }}>set the bounty in the form below</div>, then approve the correct answer to pay out the bounty.
+                  </h5>
+                </div>
+              }
+              <Grid.Column width={16}>
+                {this.renderCards()}
+                <br />
+              </Grid.Column>
+            </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column width={8}>
-              { this.state.isAsker ? <SetBountyForm address={this.props.address} /> : <AnswerForm address={this.props.address} /> }
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+            <Grid.Row>
+              <Grid.Column width={8}>
+                { this.state.isAsker ? <SetBountyForm address={this.props.address} /> : <AnswerForm address={this.props.address} /> }
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </div>
       </Layout>
     );
   }
+}
+
+const showStyle = {
+  marginLeft: '25px',
+  marginTop: '25px'
 }
 
 export default QuestionShow;
