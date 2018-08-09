@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
-import { Card, Button } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import Layout from '../components/Layout';
 import QuestionData from '../components/QuestionData';
 import { Link } from '../routes';
@@ -33,9 +33,8 @@ class QuestionIndex extends Component {
   render() {
     return (
         <Layout>
-          <div>
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
-            <h3>Open Questions</h3>
+            <h2 style={{ marginLeft: '33.5%' }}>Open Questions</h2>
 
             <Link route="/questions/new">
               <a>
@@ -47,7 +46,6 @@ class QuestionIndex extends Component {
                 />
               </a>
             </Link>
-          </div>
             {this.renderQuestions()}
         </Layout>
     );
