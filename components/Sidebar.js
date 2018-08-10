@@ -4,7 +4,18 @@ import { Link } from '../routes';
 const sidebar = () => {
   return (
     <div style={sidebarStyle}>
-      <h2 style={{ paddingBottom: '10px' }}>QandA</h2>
+      <h2 style={{ paddingBottom: '10px' }}>
+        <Link route={'/'}>
+          <a style={linkStyle}>QandA</a>
+        </Link>
+      </h2>
+      <div style={spacingStyle}>
+        <h3>
+          <Link route={'/'}>
+            <a style={linkStyle}>Home</a>
+          </Link>
+        </h3>
+      </div>
       <div style={spacingStyle}>
         <h3>
           <Link route={'/questions/new'} prefetch>
@@ -14,7 +25,7 @@ const sidebar = () => {
       </div>
       <div style={spacingStyle}>
         <h3>
-          <Link route={'/'} prefetch>
+          <Link route={'/howitworks'} prefetch>
             <a style={linkStyle}>How it Works</a>
           </Link>
         </h3>
@@ -27,7 +38,7 @@ const sidebarStyle = {
   height: '100%',
   width: '160px',
   backgroundColor: '#000000',
-  position: 'absolute',
+  position: 'fixed',
   color: 'white',
   top: '0',
   left: '0',

@@ -40,7 +40,11 @@ async function questionData(props) {
           {summary[2]} answers
         </div>
       </div>
-      <p><button style={buttonStyle}>View Question</button></p>
+        <button style={buttonStyle}>
+          <Link route={`/questions/${addr}`} prefetch>
+            <a style={linkStyle}>View Question</a>
+          </Link>
+        </button>
     </div>
   );
 };
@@ -79,6 +83,10 @@ const buttonStyle = {
   ':hover' : {
     opacity: '0.7'
   }
+}
+
+const linkStyle = {
+  color: 'white'
 }
 
 export default asyncReactor(questionData, Loader, Error);
